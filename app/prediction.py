@@ -320,9 +320,11 @@ async def make_prediction(location, to_predict):
 
 
 def main():
-    db.session.delete(Trend.query.all())
+    trend = Trend.query.all()
+    prediction = Prediction.query.all()
+    [db.session.delete(elem) for elem in trend]
     db.session.commit()
-    db.session.delete(Prediction.query.all())
+    [db.session.delete(elem) for elem in prediction]
     db.session.commit()
     elements_to_predict = ["number_attendees", "number_applications"]
     for to_predict in elements_to_predict:
@@ -331,4 +333,4 @@ def main():
         loop = asyncio.get_event_loop()
         for index, location in enumerate(locations):
             loop.run_until_complete(make_prediction(location, to_predict))
-        loop.close()
+    loop.close()
