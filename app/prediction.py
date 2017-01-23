@@ -320,6 +320,10 @@ async def make_prediction(location, to_predict):
 
 
 def main():
+    db.session.delete(Trend.query.all())
+    db.session.commit()
+    db.session.delete(Prediction.query.all())
+    db.session.commit()
     elements_to_predict = ["number_attendees", "number_applications"]
     for to_predict in elements_to_predict:
         locations = [i for i in EventInformation.query.all() if i.location]
