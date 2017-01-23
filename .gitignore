@@ -1,0 +1,4 @@
+*.csv
+*.creds
+.DS_Store
+__pycache__/

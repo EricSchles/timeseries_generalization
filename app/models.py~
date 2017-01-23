@@ -1,0 +1,34 @@
+"""
+
+Here the models for our database is defined.
+
+I am using Postgres, Flask-SQLAlchemy for this application.
+
+For an introduction to Flask-SQLAlchemy check out: http://flask-sqlalchemy.pocoo.org/2.1/
+""" 
+from app import db
+
+
+class EventInformation(db.Model):
+    """
+    This model gives us an understanding of event information
+    
+    parameters:
+    @timestamp - the date of the event
+    @number_attendees - number of people attending the event
+    @number_applications - number of applications created during the event
+    @location - where the event took place
+    """
+    __tablename__ = 'event_information'
+    id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.DateTime)
+    number_attendees = db.Column(db.Integer)
+    number_applications = db.Column(db.Integer)
+    location = db.Column(db.String)
+    
+    def __init__(self, timestamp, number_attendees, number_applications, location):
+        self.timestamp = timestamp
+        self.number_attendees = number_attendees
+        self.number_applications = number_applications
+        self.location = location
+        
